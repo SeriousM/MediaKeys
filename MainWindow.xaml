@@ -1,0 +1,114 @@
+﻿<Window x:Class="MediaKeys.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        AllowsTransparency="True"
+        Opacity="1"
+        Title="Media Buttons" Height="56.217" Width="247.643">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="Margin" Value="0 -8 0 0" />
+        </Style>
+        <DrawingImage x:Key="IconPrevious">
+            <DrawingImage.Drawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,24,24" />
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Brush>
+                        <VisualBrush Visual="{Binding ElementName=previousButton}" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="IconPlayPause">
+            <DrawingImage.Drawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,24,24" />
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Brush>
+                        <VisualBrush Visual="{Binding ElementName=playPauseButton}" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="IconForward">
+            <DrawingImage.Drawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,24,24" />
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Brush>
+                        <VisualBrush Visual="{Binding ElementName=forwardButton}" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="IconMute">
+            <DrawingImage.Drawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,24,24" />
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Brush>
+                        <VisualBrush Visual="{Binding ElementName=muteUnmuteButton}" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+    </Window.Resources>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ThumbnailClipMargin="1 1 1 1">
+            <TaskbarItemInfo.ThumbButtonInfos>
+                <ThumbButtonInfo ImageSource="{StaticResource IconPrevious}" Click="PreviousButtonClick" />
+                <ThumbButtonInfo ImageSource="{StaticResource IconPlayPause}" Click="PlayPauseButtonClick" />
+                <ThumbButtonInfo ImageSource="{StaticResource IconForward}" Click="ForwardButtonClick" />
+                <ThumbButtonInfo ImageSource="{StaticResource IconMute}" Click="MuteUnmuteButtonClick" />
+            </TaskbarItemInfo.ThumbButtonInfos>
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
+            <RowDefinition />
+            <RowDefinition Height="0" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="6" ForceCursor="True" Cursor="{x:Static Cursors.ScrollAll}" Fill="DimGray">
+        </Rectangle>
+        <Button x:Name="previousButton" Grid.Column="0" Click="PreviousButtonClick" Grid.Row="1" Background="White">
+            <TextBlock>⏮</TextBlock>
+        </Button>
+        <Button x:Name="playPauseButton" Grid.Column="1" Click="PlayPauseButtonClick" Grid.Row="1" Background="White">
+            <TextBlock>⏯</TextBlock>
+        </Button>
+        <Button x:Name="forwardButton" Grid.Column="2" Click="ForwardButtonClick" Grid.Row="1" Background="White">
+            <TextBlock>⏭</TextBlock>
+        </Button>
+        <Button x:Name="muteUnmuteButton" Grid.Column="3" Click="MuteUnmuteButtonClick" Grid.Row="1" Background="White">
+            <TextBlock Margin="0 -4 0 0">🔇</TextBlock>
+        </Button>
+        <Button Grid.Column="4" Click="MinimizeButtonClick" Grid.Row="1" Background="White">
+            <TextBlock Margin="0 -6 0 0">🗕</TextBlock>
+        </Button>
+        <Button Grid.Column="5" Click="ExitButtonClick" Grid.Row="1" Background="White">
+            <TextBlock Margin="0 -4 0 0">✖</TextBlock>
+        </Button>
+    </Grid>
+</Window>
