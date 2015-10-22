@@ -10,12 +10,39 @@
         ResizeMode="NoResize"
         MouseDown="Window_MouseDown"
         AllowsTransparency="True"
-        Opacity="1"
-        Title="Media Buttons" Height="56.217" Width="247.643">
+        Opacity=".7"
+        Title="Media Buttons" Height="50.451" Width="247.643">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="35" />
-            <Setter Property="Margin" Value="0 -8 0 0" />
+            <Setter Property="FontFamily" Value="/MediaKeys;component/#Symbola"></Setter>
+            <Setter Property="Margin" Value="0 0 0 0" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                                <Setter Property="Opacity" TargetName="Chrome" Value="0.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#DDDDDD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <DrawingImage x:Key="IconPrevious">
             <DrawingImage.Drawing>
@@ -92,23 +119,23 @@
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Row="0" Grid.ColumnSpan="6" ForceCursor="True" Cursor="{x:Static Cursors.ScrollAll}" Fill="DimGray">
         </Rectangle>
-        <Button x:Name="previousButton" Grid.Column="0" Click="PreviousButtonClick" Grid.Row="1" Background="White">
+        <Button x:Name="previousButton" Grid.Column="0" Click="PreviousButtonClick" Grid.Row="1">
             <TextBlock>⏮</TextBlock>
         </Button>
-        <Button x:Name="playPauseButton" Grid.Column="1" Click="PlayPauseButtonClick" Grid.Row="1" Background="White">
+        <Button x:Name="playPauseButton" Grid.Column="1" Click="PlayPauseButtonClick" Grid.Row="1">
             <TextBlock>⏯</TextBlock>
         </Button>
-        <Button x:Name="forwardButton" Grid.Column="2" Click="ForwardButtonClick" Grid.Row="1" Background="White">
+        <Button x:Name="forwardButton" Grid.Column="2" Click="ForwardButtonClick" Grid.Row="1">
             <TextBlock>⏭</TextBlock>
         </Button>
-        <Button x:Name="muteUnmuteButton" Grid.Column="3" Click="MuteUnmuteButtonClick" Grid.Row="1" Background="White">
-            <TextBlock Margin="0 -4 0 0">🔇</TextBlock>
+        <Button x:Name="muteUnmuteButton" Grid.Column="3" Click="MuteUnmuteButtonClick" Grid.Row="1">
+            <TextBlock Margin="0 2 0 0">🔇</TextBlock>
         </Button>
-        <Button Grid.Column="4" Click="MinimizeButtonClick" Grid.Row="1" Background="White">
-            <TextBlock Margin="0 -6 0 0">🗕</TextBlock>
+        <Button Grid.Column="4" Click="MinimizeButtonClick" Grid.Row="1">
+            <TextBlock Margin="0 0 0 0">🗕</TextBlock>
         </Button>
-        <Button Grid.Column="5" Click="ExitButtonClick" Grid.Row="1" Background="White">
-            <TextBlock Margin="0 -4 0 0">✖</TextBlock>
+        <Button Grid.Column="5" Click="ExitButtonClick" Grid.Row="1">
+            <TextBlock Margin="0 2 0 0">✖</TextBlock>
         </Button>
     </Grid>
 </Window>
